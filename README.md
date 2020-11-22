@@ -8,4 +8,5 @@ Dataset link
 
 Step Description:
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-S1. 使用data中的alltime_data.txt檔，帶入deepflu_4layer_alltime.py檔，進行GSE52428資料集H1N1與H3N2受試者的所有時間點血液樣本，隨機選取80%為訓練資料，20%為測試資料，使用deepflu模型進行預測。
+S1. 將data中的alltime_data.txt檔，帶入deepflu_4layer_alltime.py檔，GSE52428資料集H1N1與H3N2受試者的所有時間點血液樣本，隨機選取80%為訓練資料，20%為測試資料，使用deepflu模型進行預測，可顯示預測結果的Accuracy、Sensitivity、Specificity、Precition、MCC、AUROC、AUPR。
+S2. 將data中的t0_data.txt檔，帶入deepflu_4layer_t0.py檔，GSE52428資料集H1N1與H3N2受試者的接種病毒前時間點血液樣本，進行leave one out模式，提取一名受試者為測試資料，剩下的受試者為訓練資料，對所有受試者預測一輪，使用deepflu模型進行預測，可得出原始標籤、接種前兩個時間點的預測標籤，接種前兩個時間點的標籤機率，利用前兩樣資訊可計算出每個受試者的TP、TN、FP、FN，並將
