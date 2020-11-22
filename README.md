@@ -6,21 +6,6 @@ Dataset link
 1. GSE52428 : https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE52428
 2. GSE73072 : https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE73072
 
-File description:
+Step Description:
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-1. External_verification : 
-    a. external_verification_data : 
-    b. all_12023_list.py : 
-    c. deepflu_3layer_t0.py : 
-2. alltime_data :
-3. auroc_auprc_data :
-4. t0_data :
-5. all_22277_list.py :
-6. auroc_auprc.py :
-7. deepflu_4layer_alltime.py :
-8. deepflu_4layer_t0.py : 
-
----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-● Introduction : 
-  
-● Experiment : 
+S1. 使用data中的alltime_data.txt檔，帶入deepflu_4layer_alltime.py檔，進行GSE52428資料集H1N1與H3N2受試者的所有時間點血液樣本，隨機選取80%為訓練資料，20%為測試資料，使用deepflu模型進行預測。
