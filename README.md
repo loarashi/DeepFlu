@@ -1,5 +1,10 @@
 DeepFlu
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+DeepFlu模型，一層輸入層(kernel_initializer使用uniform, activation使用relu)，四層隱藏層100個節點(kernel_initializer使用uniform, activation使用relu)，一層dropout參數設定0.1，一層輸出層(kernel_initializer使用uniform, activation使用sigmoid)；loss使用binary_crossentropy，optimizer使用adam，validation_spli設定0.1，epochs設定150，batch_size設定200。
+
+
+<div align=center><img width="600" height="600" src="https://github.com/loarashi/DeepFlu/blob/main/%E5%9C%96%E7%89%874.png">
+ 
 
 Dataset link
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -21,4 +26,4 @@ Description:
   將data中的external_validation_data.txt檔，分別帶入deepflu_external_validation_h1n1.py檔與deepflu_external_validation_h31n2.py，GSE73072資料集H1N1的DEE3、DEE4實驗；H3N2的DEE2、DEE5實驗受試者的所有時間點血液樣本，H1N1選取DEE3為訓練資料，DEE4為測試資料，H3N2選取DEE2為訓練資料，DEE5為測試資料，使用deepflu模型進行預測，可顯示預測結果的Accuracy、Sensitivity、Specificity、Precition、MCC、AUROC、AUPR。
   
   
-<div align=center><img width="600" height="600" src="https://github.com/loarashi/DeepFlu/blob/main/%E5%9C%96%E7%89%874.png">
+
