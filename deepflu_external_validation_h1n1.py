@@ -11,34 +11,33 @@ from sklearn import preprocessing, metrics
 
 import all_12023_list
 
-all_df = pd.read_csv("data/external_validation_data/73072_H1N1_external_validation_D3_D4.txt",sep='\t',encoding='utf-8')
+all_df = pd.read_csv("data/external_validation_data/73072_H1N1_external_validation_D3_D4.txt",sep='\t',encoding='utf-8')#讀取73072_H1N1_external_validation_D3_D4.txt檔案
 
-cols=all_12023_list.cols
+cols=all_12023_list.cols#將Probe匯入
 all_df=all_df[cols]
 
-def PreprocessData(raw_df):
+def PreprocessData(raw_df):#將資料格式化
    
-    df=raw_df.drop(['ID'], axis=1)
+    df=raw_df.drop(['ID'], axis=1)#去除ID
     ndarray = df.values
-    Features = ndarray[:,1:] 
-    Label = ndarray[:,0]
+    Features = ndarray[:,1:]#提取資料特徵
+    Label = ndarray[:,0]#提取資料標籤
 
-    minmax_scale = preprocessing.MinMaxScaler(feature_range=(0, 1))
+    minmax_scale = preprocessing.MinMaxScaler(feature_range=(0, 1))#將特徵minmax
     scaledFeatures=minmax_scale.fit_transform(Features)    
     
     return scaledFeatures,Label
 
 all_Features,all_Label=PreprocessData(all_df)
-train_Features=all_Features[:40]
-train_Label=all_Label[:40]
-test_Features=all_Features[38:]
-test_Label=all_Label[38:]
+train_Features=all_Features[:40]#提取訓練資料的特徵
+train_Label=all_Label[:40]#提取訓練資料的標籤
+test_Features=all_Features[38:]#提取測試資料的特徵
+test_Label=all_Label[38:]#提取測試資料的標籤
 
 from keras.models import Sequential
 from keras.layers import Dense,Dropout
 
-model = Sequential()
-
+model = Sequential()#模型一層輸入層22277個節點，四層隱藏層100個節點，一層dropout參數0.1，一層輸出層1個節點
 model.add(Dense(units=100, input_dim=12023, kernel_initializer='uniform', activation='relu'))
 model.add(Dropout(0.1))
 model.add(Dense(units=100, kernel_initializer='uniform', activation='relu'))
@@ -46,7 +45,6 @@ model.add(Dense(units=100, kernel_initializer='uniform', activation='relu'))
 model.add(Dense(units=100, kernel_initializer='uniform', activation='relu'))
 model.add(Dense(units=1, kernel_initializer='uniform', activation='sigmoid'))
 model.summary()
-
 model.compile(loss='binary_crossentropy',optimizer='adam', metrics=['accuracy'])
 train_history =model.fit(x=train_Features, y=train_Label, validation_split=0.1, epochs=150, batch_size=200,verbose=0)
 
@@ -55,15 +53,15 @@ all_probability=model.predict_classes(all_Features)
 all_probability_score=model.predict_proba(all_Features)
 pd=all_df
 pd.insert(len(all_df.columns), 'probability',all_probability)
-predict=all_probability[38:]
-predict_score=all_probability_score[38:]
+predict=all_probability[38:]#提取測試資料的預測標籤
+predict_score=all_probability_score[38:]#提取測試資料的預測機率
 predict_score=predict_score.tolist()
 
 fpr, tpr, thresholds = metrics.roc_curve(test_Label, predict)
-auc_roc = metrics.auc(fpr, tpr)
+auc_roc = metrics.auc(fpr, tpr)#計算出AUROC
 
 precision, recall, thresholds = precision_recall_curve(test_Label, predict)
-auc_pr = metrics.auc(recall, precision)
+auc_pr = metrics.auc(recall, precision)#計算出AUPR
 
 TP=0
 TN=0
@@ -90,10 +88,10 @@ for j in range(predict.size):
     else:
         FN=FN+0
 
-acc=(TP+TN)/(TP+TN+FP+FN)
-sen=TP/(TP+FN)
-spe=TN/(TN+FP)
-pre=TP/(TP+FP)
-mcc=((TP*TN)-(FP*FN))/(((TP+FP)*(TP+FN)*(TN+FP)*(TN+FN)) ** 0.5)
+acc=(TP+TN)/(TP+TN+FP+FN)#計算出Accuracy
+sen=TP/(TP+FN)#計算出Sensitivity
+spe=TN/(TN+FP)#計算出Specificity
+pre=TP/(TP+FP)#計算出Precision
+mcc=((TP*TN)-(FP*FN))/(((TP+FP)*(TP+FN)*(TN+FP)*(TN+FN)) ** 0.5)#計算出MCC
     
-print(str(acc)+"\t"+str(sen)+"\t"+str(spe)+"\t"+str(pre)+"\t"+str(mcc)+"\t"+str(auc_roc)+"\t"+str(auc_pr)+"\n")
+print(str(acc)+"\t"+str(sen)+"\t"+str(spe)+"\t"+str(pre)+"\t"+str(mcc)+"\t"+str(auc_roc)+"\t"+str(auc_pr)+"\n")#列印出各指標數值

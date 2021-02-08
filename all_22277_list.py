@@ -4,7 +4,7 @@ Created on Wed Oct 14 21:24:56 2020
 
 @author: anna
 """
-
+#GSE52428資料集/H1N1&H3N2有22277個probe
 cols=['A/S','ID','1007_s_at',
 '1053_at',
 '117_at',

@@ -8,10 +8,10 @@ Created on Wed Oct 14 21:24:56 2020
 import pandas as pd
 from sklearn import metrics
 from sklearn.metrics import precision_recall_curve
-all_df = pd.read_csv("data/auroc_auprc_data/H1N1_auroc_auprc_no237.txt",sep='\t',encoding='utf-8')
+all_df = pd.read_csv("data/auroc_auprc_data/H1N1_auroc_auprc_no237.txt",sep='\t',encoding='utf-8')#讀取H1N1_auroc_auprc_no237.txt檔案
 
-l = all_df.values[:,0]
-p1 = all_df.values[:,1]
+l = all_df.values[:,0]#匯入標邊
+p1 = all_df.values[:,1]#匯入第1次數值，以下為2~100次數值
 p2 =all_df.values[:,2]
 p3 =all_df.values[:,3]
 p4 =all_df.values[:,4]
@@ -112,8 +112,8 @@ p98 =all_df.values[:,98]
 p99 =all_df.values[:,99]
 p100 =all_df.values[:,100]
 
-fpr, tpr, thresholds = metrics.roc_curve(l,p1)
-auc_roc1 = metrics.auc(fpr, tpr)
+fpr, tpr, thresholds = metrics.roc_curve(l,p1)#計算出第1次fpr&tpr
+auc_roc1 = metrics.auc(fpr, tpr)#計算出第1次AUROC，以下以此類推
 fpr, tpr, thresholds = metrics.roc_curve(l,p2)
 auc_roc2 = metrics.auc(fpr, tpr)
 fpr, tpr, thresholds = metrics.roc_curve(l,p3)
@@ -313,8 +313,8 @@ auc_roc99 = metrics.auc(fpr, tpr)
 fpr, tpr, thresholds = metrics.roc_curve(l,p100)
 auc_roc100 = metrics.auc(fpr, tpr)
 
-precision, recall, thresholds = precision_recall_curve(l,p1)
-auc_pr1 = metrics.auc(recall, precision)
+precision, recall, thresholds = precision_recall_curve(l,p1)#計算出第1次precision&recall
+auc_pr1 = metrics.auc(recall, precision)#計算出第1次AUPR，以下以此類推
 precision, recall, thresholds = precision_recall_curve(l,p2)
 auc_pr2 = metrics.auc(recall, precision)
 precision, recall, thresholds = precision_recall_curve(l,p3)
@@ -514,7 +514,7 @@ auc_pr99 = metrics.auc(recall, precision)
 precision, recall, thresholds = precision_recall_curve(l,p100)
 auc_pr100 = metrics.auc(recall, precision)
 
-print(auc_roc1,auc_pr1)
+print(auc_roc1,auc_pr1)#列印出第1次AUROC&AUPR，以下以此類推
 print(auc_roc2,auc_pr2)
 print(auc_roc3,auc_pr3)
 print(auc_roc4,auc_pr4)
