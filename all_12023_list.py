@@ -1,3 +1,10 @@
+# -*- coding: utf-8 -*-
+"""
+Created on Wed Oct 14 21:24:56 2020
+
+@author: anna
+"""
+#GSE73072資料集/H1N1DEE4&H3N2DEE5有12023個probe
 cols=['SI/AUSUAI',
 'ID',
 '10000_at',
