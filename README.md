@@ -3,7 +3,7 @@ DeepFlu
 DeepFlu模型，一層輸入層(kernel_initializer使用uniform, activation使用relu)，四層隱藏層100個節點(kernel_initializer使用uniform, activation使用relu)，一層dropout參數設定0.1，一層輸出層(kernel_initializer使用uniform, activation使用sigmoid)；loss使用binary_crossentropy，optimizer使用adam，validation_spli設定0.1，epochs設定150，batch_size設定200。
 
 
-<div align=center><img width="600" height="600" src="https://github.com/loarashi/DeepFlu/blob/main/%E5%9C%96%E7%89%874.png"><>
+<div align=center><img width="600" height="600" src="https://github.com/loarashi/DeepFlu/blob/main/%E5%9C%96%E7%89%874.png"><div>
  
 
 Dataset link
