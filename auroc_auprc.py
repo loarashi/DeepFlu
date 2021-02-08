@@ -10,7 +10,7 @@ from sklearn import metrics
 from sklearn.metrics import precision_recall_curve
 all_df = pd.read_csv("data/auroc_auprc_data/H1N1_auroc_auprc_no237.txt",sep='\t',encoding='utf-8')#讀取H1N1_auroc_auprc_no237.txt檔案
 
-l = all_df.values[:,0]#匯入標邊
+l = all_df.values[:,0]#匯入標籤
 p1 = all_df.values[:,1]#匯入第1次數值，以下為2~100次數值
 p2 =all_df.values[:,2]
 p3 =all_df.values[:,3]
