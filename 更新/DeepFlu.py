@@ -14,7 +14,7 @@ from keras.layers import Dense,Dropout
 # read probes
 import all_22277_probelist
 
-all_df = pd.read_csv("data/t0_data/"+sys.argv[1]+".txt",sep='\t',encoding='utf-8') #read H1N1_rmat0_001_t0_no237file
+all_df = pd.read_csv("data/t0_data/"+sys.argv[1]+".txt",sep='\t',encoding='utf-8')
 
 cols=all_22277_list.cols #import prrobes
 all_df=all_df[cols]
